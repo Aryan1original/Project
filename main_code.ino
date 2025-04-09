@@ -3,13 +3,6 @@
 #include <ESP8266WiFi.h>
 
 #define CHANNELID1 1448001
-/* Uncomment this section with appropriate keys */
-/** 
- *  #define WIFISSID SECRET_WIFI_SSID
- *  #define PASSWORD SECRET_WIFI_PASSWORD
- *  #define WRITEAPI1 SECRET_THINGSPEAK_WRITEAPI
- */
-// 
 
 WiFiClient client;
 
@@ -21,11 +14,9 @@ void setup() {
   Serial.begin(115200);
 
   while (!Serial) {
-   ; /* wait for serial port to connect. Needed for native USB port only */
-  }
+   ;  }
   
-  /* Connection for WiFi */
-  WiFi.begin(WIFISSID, PASSWORD); 
+    WiFi.begin(WIFISSID, PASSWORD); 
   
   while(WiFi.status() != WL_CONNECTED){
     delay(10000);
@@ -62,8 +53,7 @@ void loop() {
     float tempBody = Serial.read();
     
     writeToThingSpeak(heartbeat, humidity, tempRoom, tempBody);
-    /* delay for next update */
-    delay(20000);
+       delay(20000);
   }else{
     Serial.println("Nothing available to read at that moment");
   }
